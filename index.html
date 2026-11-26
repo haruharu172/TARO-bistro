@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TARO｜船橋・前原西のダイニング＆ビストロ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Serif+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-night: #14110f;
+      --bg-charcoal: #1e1916;
+      --bg-ivory: #f7f3ec;
+      --bg-warm: #ede6da;
+      --ink-dark: #1d1815;
+      --ink-muted: #665d55;
+      --ink-light: #f8f4ed;
+      --gold: #c49a5b;
+      --gold-soft: #e0be89;
+      --border-dark: rgba(248, 244, 237, 0.14);
+      --border-light: rgba(29, 24, 21, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      background-color: var(--bg-ivory);
+      color: var(--ink-dark);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: "Noto Serif JP", serif;
+    }
+
+    .en {
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: 0.16em;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    /* Demo Banner */
+    .demo-banner {
+      background: #27201b;
+      color: #ebd5b3;
+      font-size: 11.5px;
+      text-align: center;
+      padding: 8px 14px;
+      border-bottom: 1px solid rgba(224, 190, 137, 0.22);
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(20, 17, 15, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 66px;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--ink-light);
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 22px;
+    }
+
+    nav a {
+      color: rgba(248, 244, 237, 0.84);
+      text-decoration: none;
+      font-size: 12.5px;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--gold-soft);
+    }
+
+    /* Hero */
+    .hero {
+      background:
+        linear-gradient(125deg, rgba(16, 13, 11, 0.92) 0%, rgba(26, 21, 18, 0.78) 55%, rgba(16, 13, 11, 0.9) 100%),
+        url("https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1400&q=80") center/cover no-repeat;
+      color: var(--ink-light);
+      padding: 96px 0 88px;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--gold-soft);
+      border: 1px solid rgba(224, 190, 137, 0.45);
+      background: rgba(20, 17, 15, 0.6);
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 5.5vw, 48px);
+      font-weight: 700;
+      line-height: 1.32;
+      letter-spacing: 0.05em;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      color: rgba(248, 244, 237, 0.88);
+      font-size: 15px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 24px;
+      border-radius: 6px;
+      font-size: 13.5px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #16120f;
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-soft);
+    }
+
+    .btn-light-outline {
+      border: 1px solid rgba(248, 244, 237, 0.38);
+      color: var(--ink-light);
+      background: rgba(20, 17, 15, 0.45);
+    }
+
+    .btn-light-outline:hover {
+      border-color: var(--gold-soft);
+      color: var(--gold-soft);
+    }
+
+    /* Sections */
+    section {
+      padding: 76px 0;
+    }
+
+    .section-head {
+      margin-bottom: 36px;
+    }
+
+    .section-head .en {
+      display: block;
+      font-size: 13px;
+      color: #8f672c;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(23px, 3.8vw, 31px);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    /* Feature Grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #fffdf9;
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 26px 24px;
+    }
+
+    .card-num {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 15px;
+      color: #8f672c;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    /* Menu Showcase */
+    .menu-band {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .menu-split {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .menu-img {
+      width: 100%;
+      height: 100%;
+      min-height: 270px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--border-light);
+    }
+
+    .menu-panel {
+      background: #fffdf9;
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 28px;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 15px 0;
+      border-bottom: 1px dashed rgba(29, 24, 21, 0.18);
+    }
+
+    .menu-item:last-of-type {
+      border-bottom: none;
+    }
+
+    .menu-name {
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .menu-desc {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-top: 3px;
+    }
+
+    .menu-tag {
+      font-size: 12px;
+      font-weight: 700;
+      color: #7a5520;
+      white-space: nowrap;
+    }
+
+    .menu-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    /* Info & Map */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .info-box {
+      background: #fffdf9;
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 26px;
+    }
+
+    .info-box h3 {
+      font-size: 18px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    dl {
+      font-size: 13.5px;
+    }
+
+    dt {
+      font-weight: 700;
+      color: #7a5520;
+      margin-top: 12px;
+    }
+
+    dt:first-child {
+      margin-top: 0;
+    }
+
+    dd {
+      color: var(--ink-dark);
+    }
+
+    dd a {
+      color: var(--ink-dark);
+      text-decoration: underline;
+    }
+
+    .map-frame {
+      width: 100%;
+      height: 245px;
+      border: 0;
+      border-radius: 8px;
+      margin-bottom: 14px;
+    }
+
+    .map-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-sm {
+      padding: 10px 16px;
+      font-size: 12.5px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .btn-dark {
+      background: var(--bg-charcoal);
+      color: var(--ink-light);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--bg-charcoal);
+      color: var(--bg-charcoal);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-night);
+      color: rgba(248, 244, 237, 0.76);
+      padding: 38px 0;
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    footer a {
+      color: var(--gold-soft);
+      text-decoration: none;
+    }
+
+    @media (max-width: 780px) {
+      .menu-split,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+      nav {
+        display: none;
+      }
+      .hero {
+        padding: 74px 0 64px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-banner">
+    ※Webサイト制作のご提案用に作成したサンプルページです（写真・メニュー記載は仮サンプルです）。
+  </div>
+
+  <header>
+    <div class="container nav-wrap">
+      <a href="#" class="brand">TARO</a>
+      <nav>
+        <a href="#about">お店のこだわり</a>
+        <a href="#menu">お料理・ドリンク</a>
+        <a href="#access">営業時間・地図</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <span class="hero-tag en">MAEHARA-NISHI, FUNABASHI / BISTRO &amp; DINING</span>
+      <h1>一皿と一杯で、<br>夜がゆっくり深まる場所。</h1>
+      <p>
+        船橋市前原西の落ち着いた空間で、丁寧につくる料理とお酒・ランチを楽しめるダイニング。
+        日常の延長線上で、気負わず心地よい時間を過ごせる一軒です。
+      </p>
+      <div class="hero-actions">
+        <a href="#access" class="btn btn-gold">営業時間・アクセスを見る</a>
+        <a href="https://www.instagram.com/taro.cuisine/" target="_blank" rel="noopener noreferrer" class="btn btn-light-outline">公式Instagramを見る</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <span class="en">ATMOSPHERE</span>
+        <h2>TARO での過ごし方</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-num">01 / DINNER</div>
+          <h3>お酒と料理を楽しむ夜時間</h3>
+          <p>
+            仕事帰りの一杯や大切な人との食事に。料理の味わいと落ち着いた照明が、ゆったりとした夜を演出します。
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-num">02 / LUNCH</div>
+          <h3>木〜日曜のランチ営業</h3>
+          <p>
+            夜のダイニングだけでなく、木曜から日曜のお昼にも営業。休日のランチや気軽な食事にも立ち寄れます。
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-num">03 / SEASONAL</div>
+          <h3>最新メニューはInstagramで</h3>
+          <p>
+            日替わりや季節のおすすめ料理・営業案内は公式Instagramで発信。来店前のチェックにも便利です。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="menu-band">
+    <div class="container">
+      <div class="section-head">
+        <span class="en">CUISINE &amp; DRINKS</span>
+        <h2>お料理・ドリンク（イメージ）</h2>
+      </div>
+      <div class="menu-split">
+        <img
+          class="menu-img"
+          src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80"
+          alt="ダイニング料理のイメージ"
+        />
+        <div class="menu-panel">
+          <div class="menu-item">
+            <div>
+              <div class="menu-name">前菜・おつまみ各種</div>
+              <div class="menu-desc">最初の一杯と一緒に楽しみたい季節のタパスや前菜。</div>
+            </div>
+            <div class="menu-tag">DINNER / LUNCH</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-name">メイン料理・肉・魚料理</div>
+              <div class="menu-desc">素材の旨みを引き出した、食べ応えと満足感のある一皿。</div>
+            </div>
+            <div class="menu-tag">RECOMMEND</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-name">ランチプレート・食事メニュー</div>
+              <div class="menu-desc">木〜日曜の12:00〜15:00に楽しめるお昼のひととき。</div>
+            </div>
+            <div class="menu-tag">THU–SUN 12:00–15:00</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-name">ワイン・クラフトドリンク・各種お酒</div>
+              <div class="menu-desc">料理に合わせて選べるドリンクラインナップをご用意。</div>
+            </div>
+            <div class="menu-tag">DRINKS</div>
+          </div>
+          <p class="menu-note">※実際のメニュー内容・仕入れ状況は日によって異なります。詳細は店舗・Instagramをご確認ください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="access">
+    <div class="container">
+      <div class="section-head">
+        <span class="en">INFORMATION &amp; ACCESS</span>
+        <h2>店舗情報・営業時間</h2>
+      </div>
+      <div class="info-grid">
+        <div class="info-box">
+          <h3>基本情報</h3>
+          <dl>
+            <dt>店名</dt>
+            <dd>TARO</dd>
+            <dt>所在地</dt>
+            <dd>〒274-0825 千葉県船橋市前原西3丁目5-15 マルトビル 105</dd>
+            <dt>営業時間</dt>
+            <dd>
+              月・火：定休日<br>
+              水：18:30〜22:00<br>
+              木〜土：12:00〜15:00 / 18:30〜22:00<br>
+              日：12:00〜15:00
+            </dd>
+            <dt>お電話</dt>
+            <dd><a href="tel:0474568684">047-456-8684</a></dd>
+            <dt>公式SNS</dt>
+            <dd><a href="https://www.instagram.com/taro.cuisine/" target="_blank" rel="noopener noreferrer">@taro.cuisine（Instagram）</a></dd>
+          </dl>
+        </div>
+
+        <div class="info-box">
+          <h3>アクセスマップ</h3>
+          <iframe
+            class="map-frame"
+            src="https://maps.google.com/maps?q=千葉県船橋市前原西3丁目5-15+マルトビル+TARO&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="TARO アクセスマップ">
+          </iframe>
+          <div class="map-actions">
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=千葉県船橋市前原西3丁目5-15+マルトビル+TARO"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-sm btn-dark"
+            >Googleマップで経路を見る</a>
+            <a
+              href="https://www.instagram.com/taro.cuisine/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-sm btn-outline"
+            >Instagramを見る</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>TARO｜千葉県船橋市前原西3-5-15 マルトビル 105</div>
+      <div><a href="#">ページ上部へ戻る ↑</a></div>
+    </div>
+  </footer>
+</body>
+</html>
